@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSRV Functional Coverage Plan Editor (Flat JSON)</title>
+    <link rel="stylesheet" href="style.css">
+    <!--
+    Functional Coverage Plan Editor (Flat JSON) Instructions:
+
+    This application is now structured in three files:
+    - index.html (this file)
+    - style.css (for all styling)
+    - script.js (for all application logic)
+
+    To run:
+    1. Save all three files (index.html, style.css, script.js) in the SAME directory.
+    2. Open `index.html` in your web browser.
+
+    Original Usage Instructions:
+    1.  Upload JSON:
+        *   Click "Choose File" to load a coverage plan.
+        *   The JSON structure should be a FLAT ARRAY of objects. Each object represents a coverage item
+            and includes "Module", "VE level", "Cover Group Name", and coverpoint details like "Attribute name", "Ranges", "Owner", etc.
+
+    2.  Navigate & View:
+        *   The app will transform the flat JSON into a hierarchical view.
+        *   Expand/collapse modules, VE levels, and cover groups using the '►'/'▼' icons.
+        *   Click an item's name in the tree to see its full details in the right-side panel.
+
+    3.  Manage Items:
+        *   Add:
+            - Click "Add Module" (top bar) to create a new top-level module.
+            - Use "Add Child" buttons (⊕ icon) in the tree to add VE Levels, Cover Groups, or Coverpoints.
+        *   Edit: Click the "Edit" button (✎ icon) next to any item to modify its properties.
+        *   Delete: Click the "Delete" button (🗑️ icon) next to any item. Confirmation required.
+
+    4.  Data Persistence:
+        *   All changes are automatically saved in your browser's local storage.
+        *   The plan will be reloaded when you revisit the page.
+
+    5.  Export:
+        *   Click "Export JSON" to download your modified coverage plan in the original FLAT ARRAY format.
+
+    6.  Clear Data:
+        *   Use "Clear All Data" to remove the current plan from local storage.
+    -->
+</head>
+<body>
+    <header>
+        <h1>OSRV Coverage Plan Editor</h1>
+        <div class="actions">
+            <input type="file" id="fileUpload" accept=".json" title="Upload Flat Coverage Plan JSON">
+            <button id="addModuleBtn" title="Add a new top-level module">Add Module</button>
+            <button id="exportJsonBtn" title="Download plan as Flat JSON">Export JSON</button>
+            <button id="copyJsonBtn" title="Copy plan JSON to clipboard">Copy JSON</button> <!-- ADDED THIS LINE -->
+            <button id="clearDataBtn" title="Clear all data from browser storage">Clear All Data</button>
+        </div>
+    </header>
+
+    <main>
+        <div id="treeContainer">
+            <p>Upload a flat JSON file or click "Add Module" to start.</p>
+        </div>
+        <div id="detailsPanel">
+            <h2>Item Details</h2>
+            <div id="detailsContent">Select an item in the tree to see its details.</div>
+        </div>
+    </main>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" title="Close">×</span>
+            <h2 id="modalTitle">Modal Title</h2>
+            <form id="modalForm">
+                <div id="formFieldsContainer">
+                    <!-- Fields will be injected here by JavaScript -->
+                </div>
+                <div style="margin-top: 20px; text-align: right;">
+                    <button type="submit">Save</button>
+                    <button type="button" class="cancel-button">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
